@@ -1,2 +1,2 @@
 # Todolist
-![Alt text](/images/Todolist.jpg)
+![Alt text](/images/Todolist.png)
