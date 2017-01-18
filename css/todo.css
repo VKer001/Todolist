@@ -40,20 +40,51 @@ body {
 
 .todo-left .left-task {
     height: 60px;
-    background: white;
-    border-radius:15px 0px 0px 15px;
     text-align: center;
     cursor: pointer;
 }
 
-.todo-left .left-task #id-top {
+.left-top {
      height: 50px;
      line-height: 50px;
      color: lightcoral;
      text-decoration: none;
 }
 
+#id-task {
+    height: 50px;
+    line-height: 50px;
+    color: lightcoral;
+    text-decoration: none;
+    font-size: large;
+}
+
+.left-diary {
+    height: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#id-diary {
+    height: 50px;
+    line-height: 50px;
+    color: lightcoral;
+    text-decoration: none;
+    font-size: large;
+}
+
+.left-active {
+    border-radius:15px 0px 0px 15px;
+    background: white;
+}
+
 .todo-right {
+    width: 1276px;
+    background: white;
+    margin-left: 90px;
+}
+
+.todo-right-diary {
     width: 1276px;
     background: white;
     margin-left: 90px;
@@ -65,12 +96,23 @@ body {
     padding: 0 20px 0 20px;
 }
 
+.todo-right-diary .right-top-diary {
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 45px;
+    padding: 0 20px 0 20px;
+}
+
 .todo-right .right-top span {
     padding: 0 0 0 52px;
     color: lightcoral;
 }
 
-.todo-right .right-top #id-a-arrows {
+.todo-right-diary .right-top-diary span {
+    padding: 0 0 0 52px;
+    color: lightcoral;
+}
+
+.arrows {
     left: 30px;
     width: 25px;
     cursor: pointer;
@@ -85,9 +127,22 @@ body {
     left: 60px;
 }
 
+.todo-right-diary .right-center-diary {
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 45px;
+    padding: 17px 0 0 68px;
+    left: 60px;
+}
+
 .todo-right .right-center .center-input {
     width: 200px;
     display: inline-block;
+}
+
+.todo-right-diary .right-center-diary .center-input-diary {
+    width: 300px;
+    display: inline-block;
+    height: 100px;
 }
 
 .todo-right .right-center .center-button {
@@ -98,6 +153,10 @@ body {
 .todo-right .right-list {
     padding-left: 68px;
     /*border-left: 1px solid #e5e5e5;*/
+}
+
+.right-hide {
+    display: none;
 }
 
 .todo-right .right-list .list-task {

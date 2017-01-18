@@ -6,7 +6,7 @@ var log = function() {
 var bindEventAdd = function(todo) {
     var addButton = document.querySelector('.center-button')
     addButton.addEventListener('click', function() {
-        log('click', addButton)
+        // log('click', addButton)
         var todoInput = document.querySelector('.center-input')
         var task = todoInput.value
         todo = {
@@ -20,18 +20,48 @@ var bindEventAdd = function(todo) {
     })
 }
 
+// 切换task diary class
+var bindEventleft = function() {
+    var todoTask = document.querySelector('#id-task')
+    var todoDiary = document.querySelector('#id-diary')
+    var todoRightlist = document.querySelector(".todo-right")
+    var todoRightdiary = document.querySelector('.todo-right-diary')
+    todoTask.addEventListener('click', function(event) {
+        var todoDiv = event.target.parentElement
+        if (!todoDiv.classList.contains('left-active')) {
+            todoDiv.classList.add("left-active")
+            todoDiary.parentElement.classList.remove("left-active")
+
+            todoRightlist.classList.remove("right-hide")
+            todoRightdiary.classList.add("right-hide")
+        }
+    })
+    todoDiary.addEventListener('click', function(event) {
+        var todoDiv = event.target.parentElement
+        if (!todoDiv.classList.contains('left-active')) {
+            todoDiv.classList.add("left-active")
+            todoTask.parentElement.classList.remove("left-active")
+
+            todoRightlist.classList.add("right-hide")
+            todoRightdiary.classList.remove("right-hide")
+        }
+    })
+
+}
+
 // 完成与删除按钮
 var bindEventButton = function(todo) {
     var todoContainer = document.querySelector('.right-list')
     todoContainer.addEventListener('click', function(event) {
         var target = event.target
+        // console.log("target",target);
         if (target.classList.contains('todo-done')) {
             var todoDiv = target.parentElement
             toggleClass(todoDiv, 'done')
             toggleClass(target, 'btn-info')
         } else if (target.classList.contains('todo-delete')) {
             var todoDiv = target.parentElement
-            var index = indexOfElement(target)
+            var index = indexOfElement(todoDiv)
             todoDiv.remove()
             todoList.splice(index, 1)
             saveTodos()
@@ -84,13 +114,9 @@ var toggleClass = function(element, className) {
 // 返回自己在父元素中的下标
 var indexOfElement = function(element) {
     var parent = element.parentElement
-    // log('parent', parent, 'len', parent.length)
-    // log('children', parent.children, 'len', parent.children.length)
     for (var i = 0; i < parent.children.length; i++) {
         var e = parent.children[i]
-        // log('parent.children[i]',parent.children[i])
-        if (e === element.parentElement) {
-            // log('i =', i)
+        if (e === element) {
             return i
         }
     }
@@ -115,6 +141,7 @@ var loadTodos = function() {
 
 // 入口
 var __main = function() {
+    bindEventleft()
     bindEventAdd()
     bindEventButton()
     loadTodos()

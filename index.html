@@ -21,17 +21,22 @@
                     <span>VKer</span>
                 </div>
 
-                <div class="left-task">
-                    <i class="glyphicon glyphicon-paperclip" id='id-top'></i>
-                    <a href="#" id='id-top'>任务</a>
+                <div class="left-task left-active">
+                    <i class="glyphicon glyphicon-paperclip left-top"></i>
+                    <a href="#task" id='id-task'>任务</a>
+                </div>
+
+                <div class="left-diary">
+                    <i class="glyphicon glyphicon-paperclip left-top"></i>
+                    <a href="#diary" id='id-diary'>日记</a>
                 </div>
             </div>
 
             <div class="todo-right">
                 <div class="right-top">
                     <span>业精于勤，荒于嬉</span>
-                    <a href="#" class='glyphicon glyphicon-chevron-left' id='id-a-arrows'></a>
-                    <a href="#" class='glyphicon glyphicon-chevron-right'id='id-a-arrows'></a>
+                    <a href="#" class='glyphicon glyphicon-chevron-left arrows'></a>
+                    <a href="#" class='glyphicon glyphicon-chevron-right arrows'></a>
                 </div>
 
                 <div class="right-center">
@@ -40,6 +45,27 @@
                 </div>
 
                 <div class="right-list">
+                    <!-- <div class="list-task">
+                        <span class="task-time">13:08</span>
+                        <i class="glyphicon glyphicon-dashboard"></i>
+                        <span>吃饭</span>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="todo-right-diary right-hide">
+                <div class="right-top-diary">
+                    <span>行成于思，毁于随</span>
+                    <a href="#" class='glyphicon glyphicon-chevron-left arrows'></a>
+                    <a href="#" class='glyphicon glyphicon-chevron-right arrows'></a>
+                </div>
+
+                <div class="right-center-diary">
+                    <textarea class="form-control center-input-diary" placeholder="新建日记" rows="3"></textarea>
+                    <button type='button' class="btn btn-info glyphicon glyphicon-plus center-button-diary"></button>
+                </div>
+
+                <div class="right-list-diary">
                     <!-- <div class="list-task">
                         <span class="task-time">13:08</span>
                         <i class="glyphicon glyphicon-dashboard"></i>
