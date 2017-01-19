@@ -134,6 +134,16 @@ body {
     left: 60px;
 }
 
+.todo-right-diary .right-center-diary span{
+
+}
+
+#id-span-140 {
+    color: red;
+    font-weight:bold;
+    font-style:italic;
+}
+
 .todo-right .right-center .center-input {
     width: 200px;
     display: inline-block;
@@ -141,11 +151,20 @@ body {
 
 .todo-right-diary .right-center-diary .center-input-diary {
     width: 300px;
-    display: inline-block;
     height: 100px;
 }
 
 .todo-right .right-center .center-button {
+    margin-left: 0;
+    top: -1px;
+}
+
+.diary-number {
+    width: 300px;
+    text-align: right;
+}
+
+.todo-right-diary .right-center-diary .center-button-diary {
     margin-left: 0;
     top: -1px;
 }

@@ -70,6 +70,58 @@ var bindEventButton = function(todo) {
     })
 }
 
+// 监听字数
+var bindTextarea = function() {
+    var textarea = document.querySelector(".center-input-diary")
+    var spanNumber = document.querySelector("#id-span-140")
+    textarea.addEventListener('input', function() {
+        var value1 = textarea.value
+        var len = value1.length
+        var numbers = 140 - len
+        if (len > 140) {
+            alert('输入字数超出范围')
+        } else {
+            spanNumber.innerText = numbers
+        }
+    })
+}
+
+//插入回复内容
+var bindArea = function(area) {
+    var t = `
+            <div class='vker-buttom'>
+                <img class="vker-img-tx" src="头像.jpg" alt="" />
+                <span id="id-span-time">${currentTime()}</span>
+                <div class=''>
+                    <textarea class="todo-huifu" name="huifu" rows="4" cols="15">${area}</textarea>
+                </div>
+            </div>
+        `
+        return t
+}
+
+
+// area内容
+var bindEventarea = function() {
+    var buttonAdd = document.querySelector(".center-button-diary")
+    var textarea = document.querySelector(".center-input-diary")
+    var spanNumber = document.querySelector("#id-span-140")
+    var spanTime = document.querySelector("#id-span-time")
+    var diaryHtml = document.querySelector('.right-list-diary')
+    buttonAdd.addEventListener('click', function() {
+        // 取到评论框中的内容
+        var value1 = textarea.value
+        // 填写回复框中的时间
+        // spanTime.innerText = "1"
+        // 清空评论框中的内容
+        textarea.value = ''
+        // 重置字数
+        spanNumber.text = 140
+        // 插入HTML
+        diaryHtml.innerHtml = bindArea(value1)
+    })
+}
+
 
 // 插入事件
 var insertTodo = function(todo) {
@@ -145,6 +197,8 @@ var __main = function() {
     bindEventAdd()
     bindEventButton()
     loadTodos()
+    bindTextarea()
+    bindEventarea()
 }
 
 var todoList = []
