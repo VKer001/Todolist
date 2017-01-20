@@ -90,7 +90,7 @@ var bindTextarea = function() {
 var bindArea = function(area) {
     var t = `
             <div class='vker-buttom'>
-                <img class="vker-img-tx" src="头像.jpg" alt="" />
+                <img class="vker-img-tx" src="images/头像.jpg" alt="" />
                 <span id="id-span-time">${currentTime()}</span>
                 <div class=''>
                     <textarea class="todo-huifu" name="huifu" rows="4" cols="15">${area}</textarea>
@@ -112,16 +112,21 @@ var bindEventarea = function() {
         // 取到评论框中的内容
         var value1 = textarea.value
         // 填写回复框中的时间
-        // spanTime.innerText = "1"
+        spanTime.innerText = currentTime()
         // 清空评论框中的内容
         textarea.value = ''
         // 重置字数
-        spanNumber.text = 140
+        spanNumber.innerText = 140
         // 插入HTML
-        diaryHtml.innerHtml = bindArea(value1)
+        insertDiary(value1)
     })
 }
 
+// 插入日记
+var insertDiary = function(area) {
+    var diaryContainer = document.querySelector('.right-list-diary')
+    diaryContainer.insertAdjacentHTML('beforeend', bindArea(area))
+}
 
 // 插入事件
 var insertTodo = function(todo) {

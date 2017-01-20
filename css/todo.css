@@ -171,7 +171,10 @@ body {
 
 .todo-right .right-list {
     padding-left: 68px;
-    /*border-left: 1px solid #e5e5e5;*/
+}
+
+.todo-right-diary .right-list-diary {
+    padding-left: 68px;
 }
 
 .right-hide {
@@ -197,3 +200,32 @@ body {
     text-align: center;
     font-size:20px;
 }*/
+
+.vker-buttom {
+    position: relative;
+    margin-top:100px;
+    width: 90%;
+    border-bottom: 1px dashed lightgray;
+    margin: 0 auto;
+}
+.vker-img-tx {
+    width:50px;
+    height: 50px;
+    margin:10px;
+    display: inline-block;
+}
+.vker-huifu {
+    position: absolute;
+    border: 0px;
+    width: 100%;
+    text-align: center;
+}
+.todo-huifu {
+    width: 100%;
+    border: 0px;
+    text-align: center;
+}
+#id-span-time {
+    float: right;
+    top: 20px;
+}
