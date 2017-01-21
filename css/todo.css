@@ -203,8 +203,7 @@ body {
 
 .vker-buttom {
     position: relative;
-    margin-top:100px;
-    width: 90%;
+    padding-right: 60%;
     border-bottom: 1px dashed lightgray;
     margin: 0 auto;
 }
@@ -228,4 +227,14 @@ body {
 #id-span-time {
     float: right;
     top: 20px;
+}
+
+.todo-huifu {
+    border-color:#FFFFFF !important;
+    resize :none;
+}
+
+.delete-diary {
+    margin-left: 220px;
+    margin-top: 20px;
 }

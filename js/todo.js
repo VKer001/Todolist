@@ -17,6 +17,7 @@ var bindEventAdd = function(todo) {
         saveTodos()
         insertTodo(todo)
         todoInput.value = ''
+        leftHeight()
     })
 }
 
@@ -35,6 +36,7 @@ var bindEventleft = function() {
             todoRightlist.classList.remove("right-hide")
             todoRightdiary.classList.add("right-hide")
         }
+        leftHeight()
     })
     todoDiary.addEventListener('click', function(event) {
         var todoDiv = event.target.parentElement
@@ -45,12 +47,13 @@ var bindEventleft = function() {
             todoRightlist.classList.add("right-hide")
             todoRightdiary.classList.remove("right-hide")
         }
+        leftHeight()
     })
 
 }
 
 // 完成与删除按钮
-var bindEventButton = function(todo) {
+var bindEventButton = function() {
     var todoContainer = document.querySelector('.right-list')
     todoContainer.addEventListener('click', function(event) {
         var target = event.target
@@ -65,8 +68,23 @@ var bindEventButton = function(todo) {
             todoDiv.remove()
             todoList.splice(index, 1)
             saveTodos()
-            log(todoList)
         }
+        leftHeight()
+    })
+}
+
+var bindEventdelete = function() {
+    var deleteDiary = document.querySelector('.right-list-diary')
+    deleteDiary.addEventListener('click', function(event) {
+        var target = event.target
+        if (target.classList.contains('delete-diary')) {
+            var diaryDiv = target.parentElement
+            var indexDiary = indexOfElement(diaryDiv)
+            diaryDiv.remove()
+            diaryList.splice(indexDiary, 1)
+            saveTodos()
+        }
+        leftHeight()
     })
 }
 
@@ -91,9 +109,10 @@ var bindArea = function(area) {
     var t = `
             <div class='vker-buttom'>
                 <img class="vker-img-tx" src="images/头像.jpg" alt="" />
+                <button type='button' class="btn btn-default delete-diary">删除日记</button>
                 <span id="id-span-time">${currentTime()}</span>
                 <div class=''>
-                    <textarea class="todo-huifu" name="huifu" rows="4" cols="15">${area}</textarea>
+                    <textarea class="todo-huifu form-control" name="huifu" rows="4" cols="15">${area.diary}</textarea>
                 </div>
             </div>
         `
@@ -102,23 +121,25 @@ var bindArea = function(area) {
 
 
 // area内容
-var bindEventarea = function() {
+var bindEventarea = function(area) {
     var buttonAdd = document.querySelector(".center-button-diary")
     var textarea = document.querySelector(".center-input-diary")
     var spanNumber = document.querySelector("#id-span-140")
-    var spanTime = document.querySelector("#id-span-time")
-    var diaryHtml = document.querySelector('.right-list-diary')
     buttonAdd.addEventListener('click', function() {
-        // 取到评论框中的内容
         var value1 = textarea.value
-        // 填写回复框中的时间
-        spanTime.innerText = currentTime()
+        area = {
+            'diary' : value1,
+            'time' : currentTime(),
+        }
+        diaryList.push(area)
+        saveTodos()
         // 清空评论框中的内容
         textarea.value = ''
         // 重置字数
         spanNumber.innerText = 140
         // 插入HTML
-        insertDiary(value1)
+        insertDiary(area)
+        leftHeight()
     })
 }
 
@@ -182,7 +203,9 @@ var indexOfElement = function(element) {
 // 保存 todoList
 var saveTodos = function() {
     var s = JSON.stringify(todoList)
+    var d = JSON.stringify(diaryList)
     localStorage.todoList = s
+    localStorage.diaryList = d
 }
 
 // 下载 todoList
@@ -196,15 +219,38 @@ var loadTodos = function() {
     }
 }
 
+var loadDiarys = function() {
+    var d = localStorage.diaryList
+    // 程序加载后, 加载 todoList 并且添加到页面中
+    diaryList = JSON.parse(d)
+    for (var i = 0; i < diaryList.length; i++) {
+        var area = diaryList[i]
+        insertDiary(area)
+    }
+}
+
+// 监听屏幕改变 left height
+var leftHeight = function() {
+    var pageScreen = document.querySelector("body").offsetHeight
+    if (pageScreen > 660) {
+        document.querySelector(".todo-left").style.height = pageScreen + "px"
+    } else {
+        document.querySelector(".todo-left").style.height = 660 + "px"
+    }
+}
+
 // 入口
 var __main = function() {
     bindEventleft()
     bindEventAdd()
     bindEventButton()
+    bindEventdelete()
     loadTodos()
     bindTextarea()
     bindEventarea()
+    loadDiarys()
 }
 
 var todoList = []
+var diaryList = []
 __main()
