@@ -239,6 +239,34 @@ var leftHeight = function() {
     }
 }
 
+// popstate 浏览器历史记忆
+var windowHistory = function() {
+    window.addEventListener("popstate", function(e) {
+        var todoTask = document.querySelector('#id-task')
+        var todoDiary = document.querySelector('#id-diary')
+        var stateHref = location.href
+        if (stateHref.includes('#task')) {
+            todoTask.click()
+        } else {
+            todoDiary.click()
+        }
+    })
+}
+
+// 监听回车 添加事件
+var bindEnter = function() {
+    document.querySelector('input').addEventListener('keyup', function(event) {
+		if (event.keyCode == "13") {
+			document.querySelector('.center-button').click()
+		}
+	})
+    document.querySelector('textarea').addEventListener('keyup', function(event) {
+		if (event.keyCode == "13") {
+			document.querySelector('.center-button-diary').click()
+		}
+	})
+}
+
 // 入口
 var __main = function() {
     bindEventleft()
@@ -249,6 +277,8 @@ var __main = function() {
     bindTextarea()
     bindEventarea()
     loadDiarys()
+    windowHistory()
+    bindEnter()
 }
 
 var todoList = []
